@@ -1,0 +1,12 @@
+entity
+{
+	"classname" "logic_relay"
+	"spawnflags" "0"
+	"StartDisabled" "0"
+	"targetname" "dusk"
+	"origin" "0 0 0"
+	editor
+	{
+		"comments" "This logic_relay will be triggered when it is night or dark. Useful for lights and other effects."
+	}
+}

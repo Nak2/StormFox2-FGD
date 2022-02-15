@@ -1,0 +1,206 @@
+@include "base.fgd"
+
+// StormFox 2 ( Version 2.5 ) intergration
+// Note; I aim to make these entities compatible with other mods.
+
+// Day Night
+	@PointClass base(Targetname) iconsprite("editor/logic_day_relay.vmt") = logic_day_relay:
+	"A relay that gets triggered when it is day.\n" +
+	"Note: \n"+
+	"It is better to create a logic_relay and name it 'dawn' instead, "+
+	"for maximum for compatibility with the majority of mods."
+	[
+		spawnflags(flags) =
+		[
+		]
+		trigger_type(choices) : "Trigger Type" : 0 : "Choose when this should trigger." =
+		[
+			0 : "When lightlvl change."
+			1 : "When it turns day."
+		]
+		// Outputs
+		output OnTrigger(void) : "When it is day, this fires."
+	]
+
+	@PointClass base(Targetname) iconsprite("editor/logic_night_relay.vmt") = logic_night_relay:
+	"A relay that gets triggered when it is night.\n" +
+	"Note: \n"+
+	"It is better to create a logic_relay and name it 'dusk' instead, "+
+	"for maximum for compatibility with the majority of mods."
+	[
+		spawnflags(flags) =
+		[
+		]
+		trigger_type(choices) : "Trigger Type" : 0 : "Choose when this should trigger. Note: Some weather-types change lightlvl." =
+		[
+			0 : "When lightlvl change."
+			1 : "When it turns night."
+		]
+		// Outputs
+		output OnTrigger(void) : "When it is night or dark, this fires."
+	]
+
+// Weather
+	@PointClass base(Targetname) iconsprite("editor/logic_weather_relay.vmt") = logic_weather_relay:
+	"A relay that gets triggered when a weather_type gets applied."+
+	"Note:\n"+
+	"Some mods might not support the 'amount' type."
+	[
+		spawnflags(flags) =
+		[
+		]
+		// Weather type
+		weather_type(string) : "Weather Type" : "Rain" : "List of default weather_types: 'Clear', 'Rain', 'Snow', 'Cloud', 'Fog' and 'Lava'. However you can also write any custom weather-types here."
+		// The weater-amount
+		weather_amount(choices) : "The Amount Required" : 1 : "The amount of weather required to trigger this." =
+		[	
+			0 : "Any Amount"
+			1 : "10%"
+			2 : "25%"
+			3 : "50%"
+			4 : "75%"
+			5 : "Max Amount"
+		]
+		// Outputs
+		output OnTrigger(void) : "When weather gets applied, this fires."
+	]
+
+	@PointClass base(Targetname) iconsprite("editor/logic_weather_off_relay.vmt") = logic_weather_off_relay:
+	"A relay that gets triggered when weather gets replaced." +
+	"Used by weather mods."
+	[
+		spawnflags(flags) =
+		[
+		]
+		// Weather type
+		weather_type(string) : "Weather Type" : "Rain" : "List of default weather_types: 'Clear', 'Rain', 'Snow', 'Cloud', 'Fog' and 'Lava'. However you can also write any custom weather-types here."
+		// Outputs
+		output OnTrigger(void) : "When weather gets replaced, this fires."
+	]
+
+// Temperature
+	@PointClass base(Targetname) iconsprite("editor/logic_temperature_relay.vmt") = logic_temperature_relay:
+	"A relay that gets triggered when temperature changed.\n" +
+	"Note: \n"+
+	"Temperature slowly changes over time, make sure the range is wide enough to trigger."
+	[
+		spawnflags(flags) =
+		[
+		]
+		// Temperature
+		temperature_type(choices) : "Type of temperature" : 0 : "The temperature unit used."= 
+		[	
+			0 : "Celsius"
+			1 : "Fahrenheit"
+			2 : "Kelvin"
+		]
+		temperature_min(float) : "The min temperature" : 18 : "The minimum temperature to trigger."
+		temperature_max(float) : "The max temperature" : 20 : "The maximum temperature to trigger."
+		// Outputs
+		output OnTrigger(void) : "When temperature reaches the required number, this fires."
+	]
+
+// Time
+	@PointClass base(Targetname) iconsprite("editor/logic_time_relay.vmt") = logic_time_relay:
+	"A relay that gets triggered when time is within.\n" +
+	"Note: \n"+
+	"This runs every 3th second."
+	[
+		spawnflags(flags) =
+		[
+		]
+		time_min(string) : "The starting time" : "1:00 AM" : "The minimum time to trigger. Can be '13:00' or '1:00 PM'. Remember to include AM or PM if you use those."
+		time_max(string) : "The ending time" : "14:00" : "The maximum time to trigger. Can be '13:00' or '1:00 PM'. Remember to include AM or PM if you use those."
+		// Outputs
+		output OnTrigger(void) : "When temperature reaches the required number, this fires."
+	]
+
+// Thunder
+	@PointClass base(Targetname) iconsprite("editor/logic_thunder_relay.vmt") = logic_thunder_relay:
+	"A relay that gets triggered when it starts or stops thundering."
+	[
+		spawnflags(flags) =
+		[
+		]
+		trigger_type(choices) : "Trigger when it" : 0 = 
+		[	
+			0 : "Starts thundering."
+			1 : "Stops thundering."
+		]
+		// Outputs
+		output OnTrigger(void) : "When temperature reaches the required number, this fires."
+	]
+
+// StormFox 2 Setting
+	@PointClass base(Targetname) iconsprite("editor/env_stormfox2_settings.vmt") = env_stormfox2_settings:
+	"An entity that allows you to control the default StormFox2 settings on your map."
+	[
+		spawnflags(flags) =
+		[
+		]
+		min_lightlevel(integer) : "Minimum lightlevel" : 0 : "The minimum lightlevel doing night [0 - 100]. Default: 0"
+		max_lightlevel(integer) : "Maximum lightlevel" : 80: "The maximum lightlevel doing day [0 - 100]. Default: 80"
+		max_detailsprite_darkness(integer) : "DetailSprites Darkness" : 0 : "The minimum darkness applied to detailsprites [0 - 100]"
+		fog_distance(integer) : "Fog distance": -1 : "The fog distance for clear weather. Setting this to -1, will calculate it from env_fog_controller, using its color and density."
+		fog_color(color255) : "Fog color (R G B)" : "255 255 255" : "The color of the fog for clear weather."
+		sun_yaw(integer) : "Sun Yaw" : 88 : "The yaw angle for the sun and moon."
+		moon_size(integer): "Moon Size" : 30 : "The size of the moon."
+	]
+	@PointClass base(Targetname) iconsprite("editor/env_stormfox2_materials.vmt") = env_stormfox2_materials:
+	"An entity that allows you to set material types on the map."
+	[
+		spawnflags(flags) =
+		[
+		]
+		material_type(choices) : "Material Type" : 0 : "Choose the type for said materials. Note: You can always spawn multiple entities for other types, or more materials." =
+		[
+			0 : "Ground"
+			1 : "Roof"
+		]
+		material_0(material) : "Material: " : "" : "Put the path to a material here."
+		material_1(material) : "Material: " : "" : "Put the path to a material here."
+		material_2(material) : "Material: " : "" : "Put the path to a material here."
+		material_3(material) : "Material: " : "" : "Put the path to a material here."
+		material_4(material) : "Material: " : "" : "Put the path to a material here."
+		material_5(material) : "Material: " : "" : "Put the path to a material here."
+		material_6(material) : "Material: " : "" : "Put the path to a material here."
+		material_7(material) : "Material: " : "" : "Put the path to a material here."
+		material_8(material) : "Material: " : "" : "Put the path to a material here."
+		material_9(material) : "Material: " : "" : "Put the path to a material here."
+		material_10(material): "Material: " : "" : "Put the path to a material here."
+		material_11(material): "Material: " : "" : "Put the path to a material here."
+		material_12(material): "Material: " : "" : "Put the path to a material here."
+	]
+	
+
+// StormFox 2 Entities
+@PointClass base(Targetname, Origin, Angles) studio("models/stormfox2/oillamp.mdl") = stormfox_oil_lamp : 
+"StormFox2's oil lamp."
+[
+    spawnflags(flags) =
+    [
+		1 : "Allow players to press E" : 1
+		2 : "Can take damage and break" : 1
+    ]
+	light_option(choices) : "Light should be on" : 0 : "Choose when the lamp turns on." =
+	[
+		0 : "Always."
+		1 : "Only at night."
+	]
+	rendercolor(color255) : "LightColor (R G B)" : "255 185 0" : "The color of the light."
+]
+
+@PointClass base(Targetname, Origin, Angles) studio("models/props_trainstation/trainstation_clock001.mdl") = stormfox_clock : 
+"StormFox2's clock."
+[
+]
+
+@PointClass base(Targetname, Origin, Angles) studio("models/props/de_aztec/hr_aztec/aztec_lighting/aztec_lighting_candle_01_unlit.mdl") = stormfox_cs_candle_small : 
+"StormFox2's Small CS Random Candle."
+[
+]
+
+@PointClass base(Targetname, Origin, Angles) studio("models/props/de_aztec/hr_aztec/aztec_lighting/aztec_lighting_candle_cluster_01_unlit.mdl") = stormfox_cs_candle : 
+"StormFox2's CS Random Candle."
+[
+]
