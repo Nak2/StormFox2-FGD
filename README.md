@@ -1,17 +1,25 @@
-# StormFox2-FGD (For Version 1.50 and above )
-   The resources for Hammer to intergrate StormFox 2 entities, functions and settings.  
+# StormFox2 FGD
+
+   The resources for Hammer to intergrate StormFox 2 entities, functions and settings (For V2.50 and above).  
    The goal is to implement these entities into other similar mods.  
 
    There are also two prefab logic_relays prefabs for day / night, that should work with any day / night mod.  
 
 ## How to install
-You unzip the contents to your Garrysmod installation folder: SteamLibrary\SteamApps\common\GarrysMod\
-The content include model, textures and the FGD to use.
+- Unzip the contents to your Garrysmod folder: SteamLibrary\SteamApps\common\GarrysMod\
+- Open Hammer
+- Click on "Tools" -> "Options"
+- At "Game Data files:" click on "Add"
+- Select the file "stormfox2.fgd" and click "Open".
+- Click "OK".
+ 
+The content includes model, textures and the FGD to use.
 
 ## "I only want to use the FGD"
-You can download the FGD here: https://github.com/Nak2/StormFox2-FGD/blob/main/bin/stormfox2.fgd
+  You can download the FGD here: https://github.com/Nak2/StormFox2-FGD/blob/main/bin/stormfox2.fgd  
 
-The FGD has to be placed within the "bin" folder of Garrysmod.
+   The FGD has to be placed within the "bin" folder of Garrysmod.  
+   Follow the same steps as above.
 
 ------------------------------------------------------------------
 
@@ -54,4 +62,4 @@ These entities hold settings that StormFox 2 will utilize (Unless the user overr
 
 - #### env_stormfox2_materials
    This entity will disable the default material-scanner and allow you to handpick 12 materials and set the material-type. 
-   You can always spawn multiple entities in case you need to use both material-types or more materials.  
+   You can always spawn multiple entities, in case you need to use both material-types or more materials.  
