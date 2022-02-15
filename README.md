@@ -1,4 +1,4 @@
-# StormFox2-FGD
+# StormFox2-FGD (For Version 1.50 and above )
    The resources for Hammer to intergrate StormFox 2 entities, functions and settings.  
    The goal is to implement these entities into other similar mods.  
 
