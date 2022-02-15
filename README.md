@@ -6,7 +6,8 @@
    There are also two prefab logic_relays prefabs for day / night, that should work with any day / night mod.  
 
 ## How to install
-- Unzip the contents to your Garrysmod folder: SteamLibrary\SteamApps\common\GarrysMod\
+- Download the zipfile https://github.com/Nak2/StormFox2-FGD/archive/refs/heads/main.zip
+- Unzip the content to your Garrysmod folder: SteamLibrary\SteamApps\common\GarrysMod\
 - Open Hammer
 - Click on "Tools" -> "Options"
 - At "Game Data files:" click on "Add"
