@@ -56,6 +56,12 @@ The content includes model, textures and the FGD to use.
 - #### logic_thunder_relay
    A relay that gets triggered when it starts or stops thundering.  
 
+#### Set Weather
+- #### logic_weather_relay
+   This entity holds weather-data that can be set when triggering "SetWeather".
+   It also allows you to set varius of weather-settings like wind and temperature.
+   Note</b>: It has a 2 second cooldown, before it accept "SetWeather" again.
+
 #### Setting Entities
 These entities hold settings that StormFox 2 will utilize (Unless the user overrides them).
 - #### env_stormfox2_settings
