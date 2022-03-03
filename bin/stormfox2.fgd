@@ -78,6 +78,23 @@
 		output OnTrigger(void) : "When weather gets replaced, this fires."
 	]
 
+	@PointClass base(Targetname) iconsprite("editor/logic_weather_set.vmt") = logic_weather_set :
+	"Allows you to set the weather. Note there is a 2-second cooldown."
+	[
+		spawnflags(flags) =
+		[
+		]
+		SetWeather(string) : "Weather Type" : "Rain" : "Weather to set when triggered. List of default weather_types: 'Clear', 'Rain', 'Cloud', 'Fog' and 'Lava'."
+		SetWeatherAmount(float) : "Weather Amount" : "0.8" : "The weather amount when triggered. Note: might only work for SF / SF2."
+		
+		input SetWeather(void) : "Sets the weather to match what is defined in this entity."
+		input SetTemperature(string) : "Sets the temperature. You can choose 'c', 'f' or 'k' as temperature units."
+		input EnableThunder(void) : "Enables thunder."
+		input DisableThunder(void) : "Disables thunder."
+		input ClearWeather(void) : "Sets the weather to 'Clear'"
+		
+	]
+
 // Temperature
 	@PointClass base(Targetname) iconsprite("editor/logic_temperature_relay.vmt") = logic_temperature_relay:
 	"A relay that gets triggered when temperature changed.\n" +
@@ -109,8 +126,8 @@
 		spawnflags(flags) =
 		[
 		]
-		time_min(string) : "The starting time" : "1:00 AM" : "The minimum time to trigger. Can be '13:00' or '1:00 PM'. Remember to include AM or PM if you use those."
-		time_max(string) : "The ending time" : "14:00" : "The maximum time to trigger. Can be '13:00' or '1:00 PM'. Remember to include AM or PM if you use those."
+		time_min(string) : "The starting time" : 18 : "The minimum time to trigger. Can be '13:00' or '1:00 PM'. Remember to include AM or PM if you use those."
+		time_max(string) : "The ending time" : 20 : "The maximum time to trigger. Can be '13:00' or '1:00 PM'. Remember to include AM or PM if you use those."
 		// Outputs
 		output OnTrigger(void) : "When temperature reaches the required number, this fires."
 	]
